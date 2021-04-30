@@ -123,7 +123,8 @@ Vous avez ainsi accès un votre serveur de partage de fichier !
 
 Il est important de sauvegarder les données et les fichiers de l'utilisateur, pour cela il existe plusieurs solutions : 
 - Les fichiers de l'utilisateur pourront être copiés sur un disque dur externe afin de garder une sauvegarde sur une mémoire extérieure en cas d'incident interne.
-- 
+- Il est possible de sélectionner quelles données vont être sauvegardée plus fréquemment en fonction de leur rôle afin d'éviter des conséquences importantes (financières ou autres)
+- Le système de sauvegarde devrait être automatique pour maximiser le rythme de sauvegarde et ne pas perdre de données importantes sur une étourderie de l'utilisateur
 
 
 ## Installation de NetData
@@ -190,4 +191,47 @@ Ensuite redémarrez votre NetData.
 
 **Autres données**
 
-Il peut être intéressant de garder à l'oeil d'autres données telles que :
+Il peut être intéressant de garder à l'oeil d'autres données telles que : 
+
+Le nombre d'utilisateurs connectés : 
+```
+nano /usr/lib/netdata/conf.d/python.d.conf
+```
+En changeant :
+```
+login=no
+```
+Par : 
+```
+login=yes
+```
+Il est possible de rechercher l'emplacement de cette variable grâce à un CTRL+W.
+
+On peut aussi vérifier si l'interface réseau laisse tomber des paquets :
+```
+nano /etc/netdata/heal.d/packet_drops.conf
+```
+```
+template: 30min_packet_drops
+      on: net.drops
+  lookup: sum -30m unaligned absolute
+   every: 10s
+    crit: $this > 0
+```
+
+De plus, il est possible de prédire l'évolution de certaines données comme l'espace disque pour s'y préparer au mieux et avoir un aperçu du temps restant avant que le situation ne soit réellement critique.
+On peut utiliser cette commande pour créer une alerte lorsque le disque atteint un certain taux de remplissage : 
+```
+nano /etc/netdata/heal.d/disk_full.conf
+```
+Et inscrire ces paramètres dans le fichier : 
+```
+template: disk_full_percent
+      on: disk.space
+    calc: $used * 100 / ($avail + $used)
+   every: 1m
+    warn: $this > 80
+    crit: $this > 95
+  repeat: warning 120s critical 10s
+```
+
