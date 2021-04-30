@@ -151,8 +151,7 @@ Sur votre terminal écrivez cette commande pour modifier le fichier de configura
 /etc/netdata/edit-config health_alarm_notify.conf
 ```
 
-Une fois dans la zone de discord sur le fichier config mettez l'URL que vous avez copié tout à l'heure dans DISCORD_WEBHOOK_URL=""
-ensuite sauvergarder en faisant CTRL+X.
+Une fois dans la zone de discord sur le fichier config mettez l'URL que vous avez copié tout à l'heure dans DISCORD_WEBHOOK_URL="", ensuite allez dans DEFAULT_RECIPIENT_DISCORD et après le "=" mettez "alarms", puis sauvergardez en faisant CTRL+X.
 
 Une fois la configuration terminée redémarrez NetData en faisant un :
 ```
