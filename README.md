@@ -148,7 +148,7 @@ Une fois terminé cliquez sur Copier l'URL du webhook.
 
 Sur votre terminal écrivez cette commande pour modifier le fichier de configuration des alertes :
 ```
-/etc/netdata/edit-config health alarm notify.conf
+/etc/netdata/edit-config health_alarm_notify.conf
 ```
 
 Une fois dans la zone de discord sur le fichier config mettez l'URL que vous avez copié tout à l'heure dans DISCORD_WEBHOOK_URL=""
