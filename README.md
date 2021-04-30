@@ -119,6 +119,12 @@ http://votreIP:8000
 
 Vous avez ainsi accès un votre serveur de partage de fichier !
 
+## Sauvegarde 
+
+Il est important de sauvegarder les données et les fichiers de l'utilisateur, pour cela il existe plusieurs solutions : 
+- Les fichiers de l'utilisateur pourront être copiés sur un disque dur externe afin de garder une sauvegarde sur une mémoire extérieure en cas d'incident interne.
+- 
+
 
 ## Installation de NetData
 
@@ -181,3 +187,7 @@ cd health.d
 ```
 
 Ensuite redémarrez votre NetData.
+
+**Autres données**
+
+Il peut être intéressant de garder à l'oeil d'autres données telles que :
