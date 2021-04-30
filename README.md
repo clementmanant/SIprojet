@@ -140,5 +140,45 @@ systemctl status netdata
 
 Vous pouvez désormais accéder à votre interface web grâce à "votreIP":19999
 
-### Créer des alertes
+**Créer des alertes sur discord**
 
+Sur votre serveur discord allez dans les paramètres de votre serveur, puis dans WEBHOOKS, et faites Nouveau webhook. Choississez le nom et le salon dans lequel il enverra les alertes.
+
+Une fois terminé cliquez sur Copier l'URL du webhook.
+
+Sur votre terminal écrivez cette commande pour modifier le fichier de configuration des alertes :
+```
+/etc/netdata/edit-config health alarm notify.conf
+```
+
+Une fois dans la zone de discord sur le fichier config mettez l'URL que vous avez copié tout à l'heure dans DISCORD_WEBHOOK_URL=""
+ensuite sauvergarder en faisant CTRL+X.
+
+Une fois la configuration terminée redémarrez NetData en faisant un :
+```
+systemctl stop netdata
+```
+```
+systemctl start netdata
+```
+
+Pour ensuite créer des alertes vous devrez vous rendre dans le dossier health.d pour cela faites :
+```
+cd etc/
+cd netdata
+```
+Nous allons créer une alarme pour le CPU donc une fois dans ce dossier faites :
+```
+./edit-config health.d/cpu.conf
+```
+
+Les lignes warn et crit peuvent être modifiées pour changer le seuil minimum et maximum pour activer les alertes.
+
+Une fois terminé sauvegardez.
+
+Vérifiez que le dossier est bien créé dans :
+```
+cd health.d
+```
+
+Ensuite redémarrez votre NetData.
